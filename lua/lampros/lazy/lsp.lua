@@ -1,29 +1,33 @@
 return{
     {
     "williamboman/mason.nvim",
+        dependencies ={
+            "williamboman/mason-lspconfig.nvim",
+        },
     config = function()
-        require("mason").setup()
-    end
-    },
-
-    {
-    "williamboman/mason-lspconfig.nvim",
-    config = function()
-        require("mason-lspconfig").setup({
+            local mason = require("mason")
+            local mason_lspconfig = require("mason-lspconfig")
+        mason.setup()
+        mason_lspconfig.setup({
                 ensure_installed = {
                     "lua_ls",
                     "bashls",
                     "ast_grep",
-                }
+
+                },
+                automatic_installation = true,
             })
     end
     },
-
     {
     "neovim/nvim-lspconfig",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = {
+            "hrsh7th/cmp-nvim-lsp",
+        },
     config = function()
-            local capabilities = require('cmp_nvim_lsp').default_capabilities()
             local lspconfig = require("lspconfig")
+            local capabilities = require('cmp_nvim_lsp').default_capabilities()
             lspconfig.lua_ls.setup({
                 capabilities = capabilities
             })

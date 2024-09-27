@@ -13,6 +13,7 @@ return{
                     "lua_ls",
                     "bashls",
                     "ast_grep",
+                    "gopls",
 
                 },
                 automatic_installation = true,
@@ -35,6 +36,9 @@ return{
                 capabilities = capabilities
             })
             lspconfig.ast_grep.setup({
+                capabilities = capabilities
+            })
+            lspconfig.gopls.setup({
                 capabilities = capabilities
             })
     end

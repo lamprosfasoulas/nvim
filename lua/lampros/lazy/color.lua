@@ -1,4 +1,5 @@
 return{
+    --[[
     {
     "folke/tokyonight.nvim",
     lazy = false,
@@ -9,7 +10,6 @@ return{
         vim.cmd.colorscheme "tokyonight-storm"
     end
     },
-    --[[
     {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -30,4 +30,16 @@ return{
     end
     }
     --]]
+    {
+      'sainnhe/everforest',
+      lazy = false,
+      priority = 1000,
+      config = function()
+        -- Optionally configure and load the colorscheme
+        -- directly inside the plugin declaration.
+        vim.g.everforest_background = 'hard'
+        vim.g.everforest_enable_italic = true
+        vim.cmd.colorscheme('everforest')
+      end
+    },
 }
